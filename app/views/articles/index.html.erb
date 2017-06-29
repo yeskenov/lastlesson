@@ -18,7 +18,9 @@
                           method: :delete, data: {confirm: "Are you sure?"}, 
                           class:"btn btn-xs btn-danger"
                           %>
-   <%= article.updated_at.strftime("%H:%M:%S, %d/%m/%y") %>
+   <%#= article.updated_at.strftime("%H:%M:%S, %d/%m/%y") %>
+   Last update: <%= time_ago_in_words(article.updated_at) %> ago
+   by <%= article.user.username %>
   </div>
 </div>
   <% end %>
