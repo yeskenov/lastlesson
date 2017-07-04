@@ -3,8 +3,8 @@
   <h1>All articles by <%= @user.username %></h1>
   <h4><%= link_to "Новый пост", new_article_path %></h4>
   <div class="col-sm-offset-3 col-sm-6">
-  
-  <% @user.articles.each do |article| %>
+  <%= will_paginate @user_articles%>
+  <% @user_articles.each do |article| %>
   <div class="panel panel-default">
    <div class="panel-heading">
     <h2><%= article.title %></h2>
@@ -25,4 +25,5 @@
   </div>
 </div>
   <% end %>
+   <%= will_paginate @user_articles%>
 </div>

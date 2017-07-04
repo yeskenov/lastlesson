@@ -1,7 +1,12 @@
 class ArticlesController < ApplicationController
     before_action :set_article, only: [:show, :edit,:update,:destroy]
+    before_action :require_user, only: [:edit,:show,:new,:destroy
+    ]
+    before_action :require_same_user, only: [:edit,:destroy,:update]
+    
+    
     def index
-        @articles = Article.all
+        @articles = Article.order("updated_at DESC").paginate(page: params[:page], per_page: 5)
     end
     def new
         @article = Article.new
@@ -9,7 +14,7 @@ class ArticlesController < ApplicationController
     def create
         #render plain: params[:article].inspect
         @article = Article.new(article_params)
-        @article.user = User.first
+        @article.user = current_user
         if @article.save
             flash[:notice] = "Пост успешно создан!"
           redirect_to articles_path  
@@ -41,5 +46,11 @@ class ArticlesController < ApplicationController
     end
     def set_article
         @article = Article.find(params[:id])
+    end
+     def require_same_user
+        if current_user != @article.user
+            flash[:danger] = "this is not you article"
+            redirect_to articles_path
+        end
     end
 end

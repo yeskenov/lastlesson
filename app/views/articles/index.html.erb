@@ -1,6 +1,9 @@
 <div class="container text-center">
   <h1>All articles</h1>
   <h4><%= link_to "Новый пост", new_article_path %></h4>
+ 
+  <%= will_paginate @articles %>
+ 
   <div class="col-sm-offset-3 col-sm-6">
   
   <% @articles.each do |article| %>
@@ -11,18 +14,22 @@
   <div class="panel-body">
     <%= article.description%>
   </div>
+  
   <div class="panel-footer ">
    <%= link_to "Просмотреть", article_path(article), class:"btn btn-xs btn-primary"%>
-   <%= link_to "Обновить", edit_article_path(article),class:"btn btn-xs btn-success"%>
-   <%= link_to "Удалить", article_path(article), 
+   <% if current_user == article.user %>
+    <%= link_to "Обновить", edit_article_path(article),class:"btn btn-xs btn-success"%>
+    <%= link_to "Удалить", article_path(article), 
                           method: :delete, data: {confirm: "Are you sure?"}, 
                           class:"btn btn-xs btn-danger"
                           %>
+   <% end %>                    
    <%#= article.updated_at.strftime("%H:%M:%S, %d/%m/%y") %>
    Last update: <%= time_ago_in_words(article.updated_at) %> ago
    by <%= article.user.username %>
   </div>
 </div>
   <% end %>
+   <%= will_paginate @articles%>
 </div>
  </div>
