@@ -48,7 +48,7 @@ class ArticlesController < ApplicationController
         @article = Article.find(params[:id])
     end
      def require_same_user
-        if current_user != @article.user
+        if current_user != @article.user && !current_user.admin?
             flash[:danger] = "this is not you article"
             redirect_to articles_path
         end
