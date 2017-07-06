@@ -22,7 +22,7 @@
     <% end %> 
    <% end %>
    <%= link_to "Просмотреть", article_path(article), class:"btn btn-xs btn-primary"%>
-   <% if current_user == article.user || current_user.admin? %>
+   <% if logged_in? and current_user == article.user || current_user.admin? %>
     <%= link_to "Обновить", edit_article_path(article),class:"btn btn-xs btn-success"%>
     <%= link_to "Удалить", article_path(article), 
                           method: :delete, data: {confirm: "Are you sure?"}, 
