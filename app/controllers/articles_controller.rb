@@ -6,7 +6,7 @@ class ArticlesController < ApplicationController
     
     
     def index
-        @articles = Article.order("updated_at DESC").paginate(page: params[:page], per_page: 5)
+        @articles = Article.order("updated_at DESC").search(params).paginate(page: params[:page], per_page: 5)
     end
     def new
         @article = Article.new
@@ -42,7 +42,7 @@ class ArticlesController < ApplicationController
     end
     private
     def article_params
-        params.require(:article).permit(:title, :description)
+        params.require(:article).permit(:title, :description, category_ids: [])
     end
     def set_article
         @article = Article.find(params[:id])

@@ -16,6 +16,11 @@
   </div>
   
   <div class="panel-footer ">
+   <% if article.categories.any? %>
+    <% article.categories.each  do |category| %>
+     <%= link_to category.name, category_path(category),class: "badge" %>
+    <% end %> 
+   <% end %>
    <%= link_to "Просмотреть", article_path(article), class:"btn btn-xs btn-primary"%>
    <% if current_user == article.user || current_user.admin? %>
     <%= link_to "Обновить", edit_article_path(article),class:"btn btn-xs btn-success"%>
