@@ -16,10 +16,13 @@
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li>
-            <%= link_to "Все посты", articles_path %>
+            <%= link_to "All posts", articles_path %>
         </li>
         <li>
             <%= link_to "All users", users_path %>
+        </li>
+        <li>
+            <%= link_to "Categories", categories_path %>
         </li>
       </ul>
       <!--<form class="navbar-form navbar-left">-->
@@ -48,7 +51,7 @@
               <%= link_to "Edit my profile", edit_user_path(current_user)%>
             </li>
             <li>
-              <%= link_to "Новый пост", new_article_path %>
+              <%= link_to "New post", new_article_path %>
             </li>
             <li role="separator" class="divider"></li>
             <li>

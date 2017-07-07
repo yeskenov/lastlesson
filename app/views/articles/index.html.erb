@@ -21,10 +21,10 @@
      <%= link_to category.name, category_path(category),class: "badge" %>
     <% end %> 
    <% end %>
-   <%= link_to "Просмотреть", article_path(article), class:"btn btn-xs btn-primary"%>
+   <%= link_to "Open", article_path(article), class:"btn btn-xs btn-primary"%>
    <% if logged_in? and current_user == article.user || current_user.admin? %>
-    <%= link_to "Обновить", edit_article_path(article),class:"btn btn-xs btn-success"%>
-    <%= link_to "Удалить", article_path(article), 
+    <%= link_to "Update", edit_article_path(article),class:"btn btn-xs btn-success"%>
+    <%= link_to "Delete", article_path(article), 
                           method: :delete, data: {confirm: "Are you sure?"}, 
                           class:"btn btn-xs btn-danger"
                           %>
